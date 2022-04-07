@@ -1,24 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
-
+import {useState} from 'react';
 function App() {
+  const [list, setList] = useState([]);
+  const [input, setInput] = useState('');
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <center className="App">
+      <h1>Java sample approach</h1>
+      <p>Categories:</p>
+      <ol>
+        {list.map((item, index) => (
+          <li key={index}>{item}</li>
+        ))}
+      </ol>
+      <input
+        type="text"
+        value={input}
+        onChange={e => setInput(e.target.value)}
+      />
+      <button onClick={() => {input.length && setList([...list, input]);
+      setInput('')}}>Add</button>
+      <br/>
+      <button onClick={() => setList([])}>Remove All</button>
+    </center>
   );
 }
 
